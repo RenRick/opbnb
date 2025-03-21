@@ -105,7 +105,7 @@ func TestL1FallbackClient_SwitchUrl(gt *testing.T) {
 		})
 		origin := miner.l1Chain.CurrentBlock()
 
-		for sequencer.SyncStatus().UnsafeL2.Time+sd.RollupCfg.BlockTime < origin.Time {
+		for sequencer.SyncStatus().UnsafeL2.Time+dp.DeployConfig.L2SecondBlockInterval() < origin.Time {
 			makeL2BlockWithAliceTx()
 			//require.Equal(t, uint64(i), sequencer.SyncStatus().UnsafeL2.L1Origin.Number, "no L1 origin change before time matches")
 			l2BlockCount++

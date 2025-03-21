@@ -252,7 +252,7 @@ func TestMixedDepositValidity(t *testing.T) {
 
 	// Define our L1 transaction timeout duration.
 	// txTimeoutDuration := 10 * time.Duration(cfg.DeployConfig.L1BlockTime) * time.Second
-	txTimeoutDuration := 10 * time.Duration(cfg.DeployConfig.L1BlockTime) * time.Millisecond
+	txTimeoutDuration := 10 * time.Duration(cfg.DeployConfig.L1BlockTime) * time.Second
 	// Create a struct used to track our transactors and their transactions sent.
 	type TestAccountState struct {
 		Account           *TestAccount
@@ -440,7 +440,7 @@ func TestMixedWithdrawalValidity(t *testing.T) {
 
 			// Define our L1 transaction timeout duration.
 			//txTimeoutDuration := 10 * time.Duration(cfg.DeployConfig.L1BlockTime) * time.Second
-			txTimeoutDuration := 10 * time.Duration(cfg.DeployConfig.L1BlockTime) * time.Millisecond
+			txTimeoutDuration := 10 * time.Duration(cfg.DeployConfig.L1BlockTime) * time.Second
 
 			// Bind to the deposit contract
 			depositContract, err := bindings.NewOptimismPortal(cfg.L1Deployments.OptimismPortalProxy, l1Client)
@@ -683,7 +683,7 @@ func TestMixedWithdrawalValidity(t *testing.T) {
 				require.NoError(t, err, "prove withdrawal")
 
 				// Wait for finalization and then create the Finalized Withdrawal Transaction
-				ctx, withdrawalCancel := context.WithTimeout(context.Background(), 60*time.Duration(cfg.DeployConfig.L1BlockTime)*time.Millisecond)
+				ctx, withdrawalCancel := context.WithTimeout(context.Background(), 60*time.Duration(cfg.DeployConfig.L1BlockTime)*time.Second)
 				defer withdrawalCancel()
 				if e2eutils.UseFaultProofs() {
 					err = wait.ForWithdrawalCheck(ctx, l1Client, withdrawal, cfg.L1Deployments.OptimismPortalProxy, transactor.Account.L1Opts.From)
